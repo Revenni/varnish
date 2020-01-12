@@ -1,0 +1,17 @@
+---
+# defaults file for revenni.varnish
+
+varnish_port: 80
+varnish_mgmt_port: 6082
+varnish_mgmt_addr: localhost
+varnish_cache_size: 2g
+varnish_vcl_file: /etc/varnish/default.vcl
+varnish_secret_file: /etc/varnish/secret
+
+# Prevent plaintext secrets from SCM via ansible-vault.  Replace varnish_secret
+# with output of ansible-vault command below.
+#
+# ansible-vault encrypt_string  'bigsecret' --name 'varnish_secret'
+# 
+# If using vault variable you must execute ansible with --ask-vault-pass
+varnish_secret: "bigsecret"

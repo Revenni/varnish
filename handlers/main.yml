@@ -1,0 +1,9 @@
+---
+# handlers file for revenni.varnish
+
+- name: varnish | restart
+  systemd:
+    name: varnish
+    state: restarted
+    daemon-reload: yes
+    enabled: yes

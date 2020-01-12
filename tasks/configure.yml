@@ -1,0 +1,23 @@
+---
+# tasks file for revenni.varnish
+
+- name: configure | varnish secret
+  template:
+    src: varnish_secret.j2
+    dest: "{{ varnish_secret_file }}"
+    mode: 0600
+    owner: root
+    group: root
+  notify: varnish | restart
+
+- name: configure | create systemd directory
+  file:
+    path: /etc/systemd/system/varnish.service.d
+    state: directory
+
+- name: configure | systemd
+  template:
+    src: varnish_systemd.j2
+    dest: /etc/systemd/system/varnish.service.d/varnish.commandline.conf
+    mode: 0644
+  notify: varnish | restart
